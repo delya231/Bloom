@@ -13,6 +13,7 @@ body {
   font-family: "Arial", sans-serif;
   color: #333;
   background-size: cover !important;
+  overflow-x: hidden;
 }
 
 .header {
