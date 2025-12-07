@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloom - Главная</title>
+  <link rel="stylesheet" href="web/css/styles.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <header class="header">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img class="logo" src="web/images/icons/logo.svg" alt="Логотип Bloom" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">О НАС</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="categories.html">КАТАЛОГ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link search-link" href="#" data-bs-toggle="modal" data-bs-target="#searchModal">
+                ПОИСК
+              </a>
+            </li>
+          </ul>
+          <div class="nav-icons d-flex">
+            <a class="nav-icon me-3" href="#" data-bs-toggle="modal" data-bs-target="#profileModal">
+              <img src="web/images/icons/profile.svg" alt="Профиль" />
+            </a>
+            <a class="nav-icon" href="cart.html">
+              <img src="web/images/icons/cart.svg" alt="Корзина товаров" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="modal fade search-modal" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="searchModalLabel">Поиск</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group input-group-lg">
+            <input type="text" class="form-control" placeholder="Введите название букета или цветка..." />
+            <button class="btn btn-primary" type="button">Найти</button>
+          </div>
+          <div class="mt-3">
+            <h6>Популярные запросы:</h6>
+            <div class="d-flex flex-wrap gap-2 mt-2">
+              <a href="#" class="badge bg-light text-dark p-2 text-decoration-none">Розы</a>
+              <a href="#" class="badge bg-light text-dark p-2 text-decoration-none">Тюльпаны</a>
+              <a href="#" class="badge bg-light text-dark p-2 text-decoration-none">Пионы</a>
+              <a href="#" class="badge bg-light text-dark p-2 text-decoration-none">Свадебные букеты</a>
+              <a href="#" class="badge bg-light text-dark p-2 text-decoration-none">Букеты невесты</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="profileModalLabel">
+            Вход и регистрация
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="nav nav-tabs auth-tabs" id="authTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              
+              <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button"
+                role="tab" aria-controls="login" aria-selected="true">
+                Вход
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button"
+                role="tab" aria-controls="register" aria-selected="false">
+                Регистрация
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content mt-3" id="authTabsContent">
+            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+              <form>
+                <div class="mb-3">
+                  <!-- <label for="loginEmail" class="form-label">Email</label> -->
+                  <input type="email" class="form-control" id="loginEmail" placeholder="Email" />
+                </div>
+                <div class="mb-3">
+                  <!-- <label for="loginPassword" class="form-label">Пароль</label> -->
+                  <input type="password" class="form-control" id="loginPassword" placeholder="Пароль" />
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="rememberMe" />
+                  <label class="form-check-label" for="rememberMe">Запомнить меня</label>
+                </div>
+                <a href="profile.html">
+                <button type="button" class="btn btn-primary w-100">
+                  Войти
+                </button>
+                </a>
+                <div class="text-center mt-2">
+                  <a href="#" class="text-decoration-none">Забыли пароль?</a>
+                </div>
+              </form>
+            </div>
+            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+              <form>
+                <div class="mb-3">
+                  <!-- <label for="registerName" class="form-label">Имя</label> -->
+                  <input type="text" class="form-control" id="registerName" placeholder="Логин" />
+                </div>
+                <div class="mb-3">
+                  <!-- <label for="registerEmail" class="form-label">Email</label> -->
+                  <input type="email" class="form-control" id="registerEmail" placeholder="Email" />
+                </div>
+                <div class="mb-3">
+                  <!-- <label for="registerPassword" class="form-label"
+                      >Пароль</label
+                    > -->
+                  <input type="password" class="form-control" id="registerPassword" placeholder="Пароль" />
+                </div>
+                <div class="mb-3">
+                  <!-- <label for="registerConfirmPassword" class="form-label"
+                      >Подтвердите пароль</label
+                    > -->
+                  <input type="password" class="form-control" id="registerConfirmPassword"
+                    placeholder="Повторение пароля" />
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="agreeTerms" />
+                  <label class="form-check-label" for="agreeTerms">
+                    Я согласен с
+                    <a href="#" class="text-decoration-none">условиями использования</a>
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">
+                  Зарегистрироваться
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="banner">
+    <div class="banner__container container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <img class="banner__image img-fluid" src="web/images/photos/cat_in_main.png" alt="Изображение рыжего кота" />
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="banner__text">
+            <p class="banner__title">
+              БУКЕТЫ С ДОСТАВКОЙ ПО САНКТ-ПЕТЕРБУРГУ
+            </p>
+            <p class="banner__subtitle">Скидка на первый заказ 10%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="fringe"></div>
+
+  <main class="main">
+    <div class="container">
+      <h2 class="main__title">ПОДБОРКИ</h2>
+
+      <div class="row g-3">
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img class="card__image" src="web/images/photos/flowers_1.png" alt="Изображение моно-букета" />
+            <div class="card__title">Моно-букеты</div>
+            <hr class="card__line" />
+            <div class="card__description">
+              Букеты состоящие из цветов одного вида
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img class="card__image" src="web/images/photos/flowers_2.png" alt="Изображение составного букета" />
+            <div class="card__title">Составные букеты</div>
+            <hr class="card__line" />
+            <div class="card__description">
+              Букеты состоящие из цветов нескольхих видов, а также с
+              декоративной зеленью
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img class="card__image" src="web/images/photos/flowers_3.png" alt="Изображение букета невесты" />
+            <div class="card__title">Букет невесты</div>
+            <hr class="card__line" />
+            <div class="card__description">
+              Цветы на любой вкус для вашей свадьбы
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img class="card__image" src="web/images/photos/flowers_4.png" alt="Изображение букета из сухоцветов" />
+            <div class="card__title">Букеты из сухоцветов</div>
+            <hr class="card__line" />
+            <div class="card__description">Букеты из высушенных цветов</div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img class="card__image" src="web/images/photos/flowers_5.png" alt="Изображение цветочные композиции" />
+            <div class="card__title">Цветочные композиции</div>
+            <hr class="card__line" />
+            <div class="card__description">
+              Цветы в корзинах, сумках и горшках
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img class="card__image" src="web/images/photos/flowers_6.png" alt="Изображение дополнения к букетам" />
+            <div class="card__title">Дополнение к букетам</div>
+            <hr class="card__line" />
+            <div class="card__description">Открытки, сувениры, игрушки</div>
+          </div>
+        </div>
+      </div>
+
+      <section class="newsletter">
+        <div class="newsletter__header">
+          <div class="newsletter__title">Подпишитесь на рассылку</div>
+          <div class="newsletter__text">Получите промокод на скидку 500₽</div>
+        </div>
+        <form class="newsletter__form" action="#">
+          <div class="newsletter__inputs d-flex flex-column">
+            <div class="newsletter__field">
+              <input class="newsletter__input" type="text" placeholder="Имя" required />
+            </div>
+            <div class="newsletter__field">
+              <input class="newsletter__input" type="email" placeholder="Почта" required />
+            </div>
+          </div>
+          <div>
+            <button class="newsletter__button" type="submit">
+              Подтвердить
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__left">
+          <p class="footer__phone">+7 929 104 86 41 ⚘</p>
+          <div class="social">
+            <img class="social__icon" src="web/images/icons/vk.svg" alt="Логотип ВК" />
+            <img class="social__icon" src="web/images/icons/telegram.svg" alt="Логотип Телеграм" />
+          </div>
+        </div>
+        <div class="footer__center">
+          <img class="footer__logo" src="web/images/icons/footer_logo.svg" alt="Логотип Bloom" />
+        </div>
+      </div>
+      <div class="footer__line"></div>
+      <div class="footer__bottom">
+        <p class="footer__year">2025</p>
+        <p class="footer__copyright">&copy; Все права защищены</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- <script src="/web/js/load-modals.js"></script> -->
+</body>
+
+</html>

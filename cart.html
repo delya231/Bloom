@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloom - Корзина</title>
+  <link rel="stylesheet" href="web/css/styles.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    .cart-page {
+      padding: 40px 0 100px;
+      min-height: calc(100vh - 400px);
+    }
+
+    .cart-header {
+      background: rgba(243, 250, 225, 0.9);
+      border-radius: 20px;
+      padding: 25px 30px;
+      margin-bottom: 30px;
+    }
+
+    .cart-title {
+      font-family: "Lora";
+      font-size: 32px;
+      color: #354809;
+      margin: 0;
+    }
+
+    .cart-count {
+      font-family: "Bitter-Regular";
+      font-size: 20px;
+      color: #666;
+    }
+
+    .cart-item {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 20px;
+      border: 2px solid #f3fae1;
+      transition: all 0.3s ease;
+    }
+
+    .cart-item:hover {
+      border-color: #afbe8d;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .cart-item-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 15px;
+      object-fit: cover;
+      border: 2px solid #f3fae1;
+    }
+
+    .cart-item-title {
+      font-family: "Lora";
+      font-size: 24px;
+      color: #354809;
+      margin-bottom: 5px;
+    }
+
+    .cart-item-description {
+      font-family: "Bitter-Regular";
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .cart-item-price {
+      font-family: "Lora";
+      font-size: 24px;
+      color: #ffbb7f;
+      font-weight: 600;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .quantity-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #ffbb7f;
+      background: white;
+      color: #ffbb7f;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .quantity-btn:hover {
+      background: #ffbb7f;
+      color: white;
+    }
+
+    .quantity-input {
+      width: 60px;
+      text-align: center;
+      font-family: "Lora";
+      font-size: 20px;
+      border: 2px solid #f3fae1;
+      border-radius: 10px;
+      padding: 5px;
+    }
+
+    .btn-remove {
+      color: #ff6b6b;
+      background: none;
+      border: none;
+      font-family: "Bitter-Regular";
+      font-size: 16px;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .btn-remove:hover {
+      color: #ff0000;
+    }
+
+    .cart-summary {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      border: 2px solid #afbe8d;
+      position: sticky;
+      top: 100px;
+    }
+
+    .summary-title {
+      font-family: "Lora";
+      font-size: 28px;
+      color: #354809;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #ffbb7f;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-family: "Bitter-Regular";
+      font-size: 18px;
+    }
+
+    .summary-label {
+      color: #666;
+    }
+
+    .summary-value {
+      color: #354809;
+      font-weight: 500;
+    }
+
+    .summary-total {
+      font-family: "Lora";
+      font-size: 24px;
+      color: #ffbb7f;
+      font-weight: 600;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 2px solid #f3fae1;
+    }
+
+    .btn-checkout {
+      background: #ffbb7f;
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 15px;
+      font-family: "Lora";
+      font-size: 20px;
+      width: 100%;
+      margin-top: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-checkout:hover {
+      background: #f28e35;
+      transform: translateY(-2px);
+    }
+
+    .promo-section {
+      margin-top: 30px;
+    }
+
+    .promo-input {
+      border: 2px solid #ffbb7f;
+      border-radius: 10px;
+      padding: 12px 15px;
+      font-family: "Bitter-Regular";
+      font-size: 16px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .btn-promo {
+      background: transparent;
+      border: 2px solid #afbe8d;
+      color: #354809;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-family: "Lora";
+      font-size: 16px;
+      width: 100%;
+      transition: all 0.2s ease;
+    }
+
+    .btn-promo:hover {
+      background: #afbe8d;
+      color: white;
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .empty-cart-icon {
+      width: 150px;
+      height: 150px;
+      margin-bottom: 30px;
+      opacity: 0.3;
+    }
+
+    .empty-cart-title {
+      font-family: "Lora";
+      font-size: 32px;
+      color: #354809;
+      margin-bottom: 20px;
+    }
+
+    .empty-cart-text {
+      font-family: "Bitter-Regular";
+      font-size: 20px;
+      color: #666;
+      margin-bottom: 30px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .continue-shopping {
+      background: #afbe8d;
+      border: none;
+      color: white;
+      padding: 15px 40px;
+      border-radius: 15px;
+      font-family: "Lora";
+      font-size: 18px;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .continue-shopping:hover {
+      background: #8fa569;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .suggestions-title {
+      font-family: "Lora";
+      font-size: 24px;
+      color: #354809;
+      margin: 50px 0 30px;
+      text-align: center;
+    }
+
+    @media (max-width: 992px) {
+      .cart-summary {
+        position: static;
+        margin-top: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .cart-page {
+        padding: 20px 0 60px;
+      }
+
+      .cart-header {
+        padding: 20px;
+        text-align: center;
+      }
+
+      .cart-title {
+        font-size: 28px;
+      }
+
+      .cart-item {
+        padding: 20px;
+        text-align: center;
+      }
+
+      .cart-item-image {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 15px;
+      }
+
+      .cart-item-title {
+        font-size: 22px;
+      }
+
+      .quantity-control {
+        justify-content: center;
+        margin: 15px 0;
+      }
+
+      .btn-remove {
+        margin-top: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cart-item {
+        padding: 15px;
+      }
+
+      .cart-item-title {
+        font-size: 20px;
+      }
+
+      .cart-item-price {
+        font-size: 22px;
+      }
+
+      .btn-checkout {
+        padding: 12px 20px;
+        font-size: 18px;
+      }
+
+      .empty-cart-title {
+        font-size: 26px;
+      }
+
+      .empty-cart-text {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img class="logo" src="web/images/icons/logo.svg" alt="Логотип Bloom" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">О НАС</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="categories.html">КАТАЛОГ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link search-link" href="#" data-bs-toggle="modal" data-bs-target="#searchModal">
+                ПОИСК
+              </a>
+            </li>
+          </ul>
+          <div class="nav-icons d-flex">
+            <a class="nav-icon me-3" href="#" data-bs-toggle="modal" data-bs-target="#profileModal">
+              <img src="web/images/icons/profile.svg" alt="Профиль" />
+            </a>
+            <a class="nav-icon" href="cart.html">
+              <img src="web/images/icons/cart.svg" alt="Корзина товаров" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="cart-page">
+    <div class="container">
+      <!-- Хлебные крошки -->
+      <div class="breadcrumbs">
+        <a href="../index.html">Главная</a> &gt; 
+        <span>Корзина</span>
+      </div>
+
+      <!-- Заголовок корзины -->
+      <div class="cart-header">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h1 class="cart-title">Корзина</h1>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <span class="cart-count">3 товара на сумму</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Список товаров -->
+        <div class="col-lg-8">
+          <div class="cart-item">
+            <div class="row align-items-center">
+              <div class="col-md-3 col-6">
+                <img src="../images/photos/roses-bouquet.jpg" alt="Букет роз" class="cart-item-image">
+              </div>
+              <div class="col-md-5 col-6">
+                <h3 class="cart-item-title">Красные розы</h3>
+                <p class="cart-item-description">25 алых роз в упаковке</p>
+                <div class="cart-item-price">2 500 ₽</div>
+              </div>
+              <div class="col-md-2">
+                <div class="quantity-control">
+                  <button class="quantity-btn minus">-</button>
+                  <input type="text" class="quantity-input" value="1" readonly>
+                  <button class="quantity-btn plus">+</button>
+                </div>
+              </div>
+              <div class="col-md-2 text-end">
+                <button class="btn-remove">Удалить</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="cart-item">
+            <div class="row align-items-center">
+              <div class="col-md-3 col-6">
+                <img src="../images/photos/tulips-bouquet.jpg" alt="Букет тюльпанов" class="cart-item-image">
+              </div>
+              <div class="col-md-5 col-6">
+                <h3 class="cart-item-title">Весенние тюльпаны</h3>
+                <p class="cart-item-description">15 разноцветных тюльпанов</p>
+                <div class="cart-item-price">1 200 ₽</div>
+              </div>
+              <div class="col-md-2">
+                <div class="quantity-control">
+                  <button class="quantity-btn minus">-</button>
+                  <input type="text" class="quantity-input" value="1" readonly>
+                  <button class="quantity-btn plus">+</button>
+                </div>
+              </div>
+              <div class="col-md-2 text-end">
+                <button class="btn-remove">Удалить</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="cart-item">
+            <div class="row align-items-center">
+              <div class="col-md-3 col-6">
+                <img src="../images/photos/peonies-bouquet.jpg" alt="Букет пионов" class="cart-item-image">
+              </div>
+              <div class="col-md-5 col-6">
+                <h3 class="cart-item-title">Нежные пионы</h3>
+                <p class="cart-item-description">7 белых пионов с зеленью</p>
+                <div class="cart-item-price">1 800 ₽</div>
+              </div>
+              <div class="col-md-2">
+                <div class="quantity-control">
+                  <button class="quantity-btn minus">-</button>
+                  <input type="text" class="quantity-input" value="1" readonly>
+                  <button class="quantity-btn plus">+</button>
+                </div>
+              </div>
+              <div class="col-md-2 text-end">
+                <button class="btn-remove">Удалить</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Пустая корзина (закомментировано) -->
+          
+          <div class="empty-cart">
+            <h2 class="empty-cart-title">Корзина пуста</h2>
+            <p class="empty-cart-text">Добавьте букеты из нашего каталога, чтобы они появились здесь</p>
+            <a href="categories.html" class="continue-shopping">Перейти в каталог</a>
+          </div>
+         
+        </div>
+
+        <!-- Итоги заказа -->
+        <div class="col-lg-4">
+          <div class="cart-summary">
+            <h3 class="summary-title">Итоги заказа</h3>
+            
+            <div class="summary-row">
+              <span class="summary-label">Товары (3)</span>
+              <span class="summary-value">5 500 ₽</span>
+            </div>
+            
+            <div class="summary-row">
+              <span class="summary-label">Доставка</span>
+              <span class="summary-value">500 ₽</span>
+            </div>
+            
+            <div class="summary-row">
+              <span class="summary-label">Скидка</span>
+              <span class="summary-value text-success">-550 ₽</span>
+            </div>
+            
+            <div class="summary-total">
+              <span class="summary-label">Итого:</span>
+              <span class="summary-value">5 450 ₽</span>
+            </div>
+
+            <!-- Промокод -->
+            <div class="promo-section">
+              <input type="text" class="promo-input" placeholder="Промокод">
+              <button class="btn-promo">Применить</button>
+            </div>
+
+            <button class="btn-checkout">Оформить заказ</button>
+
+            <div class="mt-4 text-center">
+              <small class="text-muted">
+                Нажимая "Оформить заказ", вы соглашаетесь с условиями обработки персональных данных
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="suggestions-title">Добавьте к заказу</h3>
+      
+      <div class="row">
+        <div class="col-md-3 col-6 mb-4">
+          <div class="product">
+            <img src="../images/photos/flowers_1.png" alt="Дополнение" class="product__image">
+            <div class="product__content">
+              <div class="product__name">Шоколад ручной работы</div>
+              <div class="product__footer">
+                <div class="product__price">450 ₽</div>
+                <button class="product__button">
+                  <img src="../images/icons/cart-add.svg" alt="Добавить в корзину">
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-3 col-6 mb-4">
+          <div class="product">
+            <img src="../images/photos/flowers_2.png" alt="Дополнение" class="product__image">
+            <div class="product__content">
+              <div class="product__name">Открытка "С днем рождения"</div>
+              <div class="product__footer">
+                <div class="product__price">150 ₽</div>
+                <button class="product__button">
+                  <img src="../images/icons/cart-add.svg" alt="Добавить в корзину">
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-3 col-6 mb-4">
+          <div class="product">
+            <img src="../images/photos/flowers_3.png" alt="Дополнение" class="product__image">
+            <div class="product__content">
+              <div class="product__name">Мягкая игрушка "Котик"</div>
+              <div class="product__footer">
+                <div class="product__price">850 ₽</div>
+                <button class="product__button">
+                  <img src="../images/icons/cart-add.svg" alt="Добавить в корзину">
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-3 col-6 mb-4">
+          <div class="product">
+            <img src="../images/photos/flowers_4.png" alt="Дополнение" class="product__image">
+            <div class="product__content">
+              <div class="product__name">Подарочная упаковка</div>
+              <div class="product__footer">
+                <div class="product__price">200 ₽</div>
+                <button class="product__button">
+                  <img src="../images/icons/cart-add.svg" alt="Добавить в корзину">
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Вставьте сюда footer из вашего файла index.html -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__left">
+          <p class="footer__phone">+7 929 104 86 41 ⚘</p>
+          <div class="social">
+            <img class="social__icon" src="web/images/icons/vk.svg" alt="Логотип ВК" />
+            <img class="social__icon" src="web/images/icons/telegram.svg" alt="Логотип Телеграм" />
+          </div>
+        </div>
+        <div class="footer__center">
+          <img class="footer__logo" src="web/images/icons/footer_logo.svg" alt="Логотип Bloom" />
+        </div>
+      </div>
+      <div class="footer__line"></div>
+      <div class="footer__bottom">
+        <p class="footer__year">2025</p>
+        <p class="footer__copyright">&copy; Все права защищены</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Функционал изменения количества товаров
+    document.querySelectorAll('.quantity-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const input = this.parentElement.querySelector('.quantity-input');
+        let value = parseInt(input.value);
+        
+        if (this.classList.contains('plus')) {
+          value++;
+        } else if (this.classList.contains('minus') && value > 1) {
+          value--;
+        }
+        
+        input.value = value;
+      });
+    });
+
+    // Функционал удаления товаров
+    document.querySelectorAll('.btn-remove').forEach(btn => {
+      btn.addEventListener('click', function() {
+        if (confirm('Удалить товар из корзины?')) {
+          this.closest('.cart-item').style.opacity = '0';
+          setTimeout(() => {
+            this.closest('.cart-item').remove();
+            // Здесь можно добавить обновление итоговой суммы
+          }, 300);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
