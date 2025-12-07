@@ -3,13 +3,19 @@
   src: url("../font/Bitter-Regular.ttf");
 }
 
+*:focus-visible {
+  outline: 4px dashed #7a865a;
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
 @font-face {
   font-family: "Lora";
   src: url("../font/Lora.ttf");
 }
 
 body {
-  background-image: url("../images/photos/background_body.png") !important;
+  /* background-image: url("../images/photos/background_body.png") !important; */
   font-family: "Arial", sans-serif;
   color: #333;
   background-size: cover !important;
@@ -303,7 +309,8 @@ footer {
 }
 
 .footer__line {
-  width: 1480px !important;
+  width: 100% !important;
+  max-width: 1480px;
   height: 2px !important;
   background: white !important;
   margin: 0 auto 20px auto !important;
@@ -753,7 +760,7 @@ h6 {
   overflow-y: auto;
 }
 
-.custom-select__trigger.active + .custom-select__options {
+.custom-select__trigger.active+.custom-select__options {
   display: block;
 }
 
@@ -933,9 +940,14 @@ h6 {
 }
 
 @media (max-width: 1024px) {
- .breadcrumbs{
+  body {
+    overflow-x: hidden;
+  }
+
+  .breadcrumbs {
     display: none;
- }
+  }
+
   .filters {
     flex-direction: column;
     align-items: stretch;
@@ -976,50 +988,51 @@ h6 {
     margin-top: 10px;
     height: 60px;
     font-size: 20px;
-}
+  }
 
-.custom-select__option {
+  .custom-select__option {
     padding: 18px 25px;
     font-size: 19px;
+
     .breadcrumbs {
       display: none;
     }
-    
+
     .card__title {
       font-size: 24px;
     }
-    
+
     .card__description {
       font-size: 22px;
     }
-    
+
     .header {
       box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
     }
-    
+
     .footer__logo {
       padding-top: 15px;
       width: 294px !important;
       height: auto !important;
     }
-    
+
     .banner__title {
       font-size: 2rem;
     }
-    
+
     .banner__subtitle {
       font-size: 4.2rem;
     }
-    
+
     .newsletter__input {
       width: 90%;
       border: 1px solid #e9ecef;
     }
-    
+
     .newsletter__inputs {
       flex-direction: column;
     }
-    
+
     .newsletter__field {
       min-width: 100%;
     }
@@ -1095,8 +1108,9 @@ h6 {
 
   @media (max-width: 400px) {
     .card__title {
-        font-size: 24px;
-      }
+      font-size: 24px;
+    }
+
     .newsletter__title {
       font-size: 30px;
       font-weight: 400;
