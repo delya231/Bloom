@@ -15,7 +15,7 @@
 }
 
 body {
-  /* background-image: url("../images/photos/background_body.png") !important; */
+  background-image: url("../images/photos/background_body.png") !important; */
   font-family: "Arial", sans-serif;
   color: #333;
   background-size: cover !important;
