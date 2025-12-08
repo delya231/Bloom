@@ -92,7 +92,7 @@ body {
 }
 
 .fringe {
-  background-image: url("/web/images/photos/bahroma.png") !important;
+  background-image: url("../images/photos/bahroma.png") !important;
   height: 100px !important;
 }
 
