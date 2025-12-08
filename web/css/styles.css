@@ -1138,9 +1138,7 @@ h6 {
   z-index: 2;
 }
     .product__footer {
-  display: flex;
-  align-items: center;
-  background: #f8f8f8;
+  
   border: 1.7px solid #7a865a;
   border-radius: 10px;
   margin-top: auto;
