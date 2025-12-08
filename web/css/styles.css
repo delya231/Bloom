@@ -1108,30 +1108,18 @@ h6 {
 
   @media (max-width: 430px) {
     .product__price {
-  font-family: "Lora";
   font-size: 16px;
   color: #354809;
   padding: 0 5px;
-  flex-grow: 1;
-  font-weight: 400;
 }
     .product__content {
   padding: 13px;
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
 }
     .product__button {
-  background: #babe8d;
-  border: none;
   border-left: 1.7px solid #4d5047;
   border-radius: 0 8px 8px 0;
   width: 35px;
- 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
   padding: 0;
   transition: all 0.3s ease;
   position: relative;
